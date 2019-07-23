@@ -375,13 +375,3 @@ heroku git:remote -a afternoon-oasis-93789
 git commit -am 'Version 1.0.0
 git push heroku master
 ```
-
-
-to add confi file in project
-```
-npm i config
-
-create a folder called config
-add a file default.json
-put the secret data inside it
-```
