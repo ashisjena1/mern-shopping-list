@@ -214,6 +214,95 @@ export const addItem = item => {
 };
 ```
 
+11. connect with backend
+```
+npm i axios
+```
+
+itemReducer.js
+```
+import { GET_ITEMS, ADD_ITEM,DELETE_ITEM,ITEMS_LOADING } from '../actions/types';
+
+const initialState = {
+    items: [],
+    loading: false
+};
+
+export default function(state = initialState, action){
+    switch(action.type){
+        case GET_ITEMS:
+            return{
+                ...state,
+                items: action.payload,
+                loading: false
+            };
+        case DELETE_ITEM:
+            return{
+                ...state,
+                items: state.items.filter( item => item._id !== action.payload )
+            }
+        case ADD_ITEM:
+            return{
+                ...state,
+                items: [action.payload, ...state.items]
+            }
+        case ITEMS_LOADING:
+            return {
+                ...state,
+                loading: true
+            }
+        default:
+            return state
+    }
+}
+```
+
+itemActions.js
+```
+import axios from 'axios';
+import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from '../actions/types';
+
+export const getItems = () => dispatch => {
+    dispatch(setItemsLoading());
+    axios
+        .get('/api/items')
+        .then(res => 
+            dispatch({
+                type: GET_ITEMS,
+                payload:res.data
+            })
+        )
+}; 
+
+export const addItem = item => dispatch => {
+    dispatch(setItemsLoading());
+    axios
+        .post('/api/items', item)
+        .then(res =>
+            dispatch({
+                type: ADD_ITEM,
+                payload: res.data
+            })    
+        )
+};
+
+export const deleteItem = id => dispatch => {
+    axios
+        .delete(`/api/items/${id}`)
+        .then(res => 
+            dispatch({
+                type: DELETE_ITEM,
+                payload: id
+            })
+        )
+};
+
+export const setItemsLoading = () => {
+    return {
+        type: ITEMS_LOADING
+    }
+}
+```
 ### configure for frontend and backend
 npm i concurrent
 ```
