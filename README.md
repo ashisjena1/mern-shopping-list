@@ -9,6 +9,7 @@ npm i express body-parser mongoose concurrently
 
 concurrently can run more than one script at a time(so we can run server and client at a time)
 ```
+
 3. configure server.js
 ```
 const express = require('express');
@@ -61,6 +62,7 @@ const ItemSchema = new Schema({
 
 module.exports = Item = mongoose.model('item', ItemSchema);
 ```
+
 5. create api routes
 ```
 const express = require('express');
@@ -100,4 +102,14 @@ router.delete('/:id', (req, res) => {
   
   
 module.exports = router;
+```
+
+### Fronend
+1. mkdir client
+2. cd 
+3. npm i -g create-react-app
+4. create-react-app .
+5. add below line in package.json
+```
+"proxy": "http://localhost:5000"
 ```
