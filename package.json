@@ -4,8 +4,11 @@
   "description": "tutorial for mern stack",
   "main": "server.js",
   "scripts": {
+    "client-install": "npm instaall --prefix client",
     "start" : "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev":"concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Ashis jena",
   "license": "MIT",

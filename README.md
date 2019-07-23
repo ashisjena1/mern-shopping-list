@@ -113,3 +113,15 @@ module.exports = router;
 ```
 "proxy": "http://localhost:5000"
 ```
+
+### configure for frontend and backend
+npm i concurrent
+```
+"scripts": {
+    "client-install": "npm instaall --prefix client",
+    "start" : "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev":"concurrently \"npm run server\" \"npm run client\""
+  },
+```
