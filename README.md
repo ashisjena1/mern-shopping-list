@@ -318,4 +318,32 @@ npm i concurrent
 ### uploading to heroku
 steps
 
-1. npm run build
+1. add below command in script
+```
+"herok-postbuild": "NPM_CONFIG_PRODUCTION=false nppm install --prefix client && npm run build --prefix client"
+```
+
+2. add code in server.js for production
+```
+// Serve static assets if in production
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static('client/build'));
+
+  app.get('*',(req,rees) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  });
+} 
+```
+
+3. install heroku-cli
+4. heroku login
+5. heroku create
+6. go to heroku dashboard then add remote git
+```
+heroku git:remote -a afternoon-oasis-93789
+```
+7. commit to heroku
+```
+git commit -am 'Version 1.0.0
+git push heroku master
+```
