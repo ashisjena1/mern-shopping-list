@@ -113,6 +113,11 @@ module.exports = router;
 ```
 "proxy": "http://localhost:5000"
 ```
+6. Install frontend dependecies
+
+```
+npm i bootstrap reactstrap uuid react-transition-group
+```
 
 ### configure for frontend and backend
 npm i concurrent
