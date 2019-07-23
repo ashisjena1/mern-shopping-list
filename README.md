@@ -314,3 +314,8 @@ npm i concurrent
     "dev":"concurrently \"npm run server\" \"npm run client\""
 },
 ```
+
+### uploading to heroku
+steps
+
+1. npm run build
